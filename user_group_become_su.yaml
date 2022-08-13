@@ -4,13 +4,12 @@
   become: yes
   become_method: su
   become_user: root
-  ansible_become_password: "root123"
-
+  
   vars:
     ansible_connection: ssh
     ansible_user: linuxadmin
     ansible_password: "root123"
-   
+    ansible_become_password: "root123"
 
   tasks:
   - name: Create a group
