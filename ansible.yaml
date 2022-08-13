@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+
+  tasks:
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Print the Mac address
+      ansible.builtin.debug:
+        msg: "{{ansible_facts['architecture']}}"
+
+    - name: Create a user account
+      ansible.builtin.user:
+        name: ansuser1
+        group: operator
+        uid: 10001
+        shell: /bin/bash
+        comment: "Ansible User 1"
+
+    - name: Create a group
+      ansible.builtin.group:
+        name: ansadmin
+        state: absent
+        gid: 10001
+ 
+    - name: Create any group
+      ansible.builtin.group:
+        name: "{{ group_name }}"
+        state: present
+        gid: "{{ group_id }}"
+
+    - name: Install postfix package on Ubuntu
+      ansible.builtin.apt:
+        name: postfix
+        state: absent
+
+    - name: Install multiple packages
+      ansible.builtin.apt:
+        name: "{{ package_name }}"
+        state: absent
+      vars:
+        package_name:
+        - mysql-server
+        - nginx

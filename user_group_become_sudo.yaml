@@ -1,0 +1,25 @@
+---
+## Become method sudo in playbook
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+   
+  tasks:
+  - name: Create a group
+    ansible.builtin.group:
+      name: webgroup8
+      gid: 21087
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: webuser8
+      uid: 21087
+      group: webgroup8
+      comment: "Ansible test user"
+      shell: /bin/bash
+

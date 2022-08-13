@@ -1,0 +1,35 @@
+---
+## First play in the playbook
+- hosts: appserver
+
+  tasks:
+  - name: Create a group
+    ansible.builtin.group:
+      name: appgroup4
+      gid: 20014
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: appuser4
+      uid: 20014
+      group: appgroup4
+      comment: "Ansible test user"
+      shell: /bin/bash
+
+## Second play in the playbook
+- hosts: webserver
+
+  tasks:
+  - name: Create a group
+    ansible.builtin.group:
+      name: webgroup4
+      gid: 20005
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: webuser4
+      uid: 20005
+      group: webgroup4
+      comment: "Ansible test user"
+      shell: /bin/bash
+

@@ -1,0 +1,17 @@
+---
+## Demo Playbook
+- hosts: localhost
+
+  tasks:
+  - name: Create a user account
+    ansible.builtin.user:
+      name: "{{ ansible_user }}"
+      uid: "{{ ansible_uid }}"
+      group: operator
+      comment: "Ansible test user"
+      shell: /bin/bash
+
+  - name: Create a group
+    ansible.builtin.group:
+      name: ansiblegroup1
+      gid: 10008

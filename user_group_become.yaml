@@ -1,0 +1,48 @@
+---
+## First play in the playbook
+- hosts: appserver
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Create a group
+    ansible.builtin.group:
+      name: appgroup5
+      gid: 20025
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: appuser5
+      uid: 20025
+      group: appgroup5
+      comment: "Ansible test user"
+      shell: /bin/bash
+
+## Second play in the playbook
+- hosts: webserver
+  become: yes
+#  become_method: sudo
+  become_method: su
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: root
+    ansible_password: "root123"
+#    ansible_user: linuxadmin
+#    ansible_password: "root123"
+   
+
+  tasks:
+  - name: Create a group
+    ansible.builtin.group:
+      name: webgroup5
+      gid: 21017
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: webuser5
+      uid: 21017
+      group: webgroup5
+      comment: "Ansible test user"
+      shell: /bin/bash
+

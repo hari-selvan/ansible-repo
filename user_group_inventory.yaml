@@ -1,0 +1,19 @@
+---
+## Demo Playbook
+- hosts: all
+
+  tasks:
+  - name: Create a group
+    ansible.builtin.group:
+      name: ansiblegroup3
+      gid: 20003
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: ansibleuser3
+      uid: 20003
+      group: ansiblegroup3
+      comment: "Ansible test user"
+      shell: /bin/bash
+
+
