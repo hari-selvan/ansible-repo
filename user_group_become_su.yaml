@@ -4,7 +4,7 @@
   become: yes
   become_method: su
   become_user: root
-  become_password: "root123"
+  ansible_become_password: "root123"
 
   vars:
     ansible_connection: ssh
