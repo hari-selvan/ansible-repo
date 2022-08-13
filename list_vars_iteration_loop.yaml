@@ -8,8 +8,8 @@
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
     username:
-      - webuser1
-      - webadmin1
+      - webuser2
+      - webadmin2
   
   tasks:
   - name: Add several users
