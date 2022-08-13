@@ -10,11 +10,22 @@
     username:
       - webuser2
       - webadmin2
+    packages:
+      - postfix
+      - httpd
   
   tasks:
+
   - name: Add several users
     ansible.builtin.user:
       name: "{{ item }}"
       state: present
       groups: "wheel"
     loop: "{{ username }}"
+
+  - name: Install list of packages
+    ansible.builtin.yum:
+      name: "{{ packages }}"
+      state: present
+
+
