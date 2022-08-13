@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+
+  tasks:
+  - name: Install multiple packages
+    ansible.builtin.apt:
+      name: "{{ package_name }}"
+      state: present
+    vars:
+      package_name:
+      - mysql-server
+      - nginx
