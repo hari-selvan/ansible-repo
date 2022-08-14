@@ -25,7 +25,7 @@
         - user2
 
   - name: Shell module will run on localhost
-    ansible.builtin.shell: echo "My Test file for delegation" > /var/tmp/delegation.out
+    ansible.builtin.shell: echo "My Test file for delegation" >> /var/tmp/delegation.out
     delegate_to: 127.0.0.1
     vars:
       ansible_connection: ssh
