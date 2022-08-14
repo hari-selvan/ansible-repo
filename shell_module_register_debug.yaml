@@ -1,0 +1,26 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+  
+  tasks:
+  - name: Run linux commands
+    ansible.builtin.shell: cat /etc/hosts
+    register: output
+
+  - name: Check the value of output
+    ansible.builtin.debug:
+      msg: "{{ output }}"
+
+  - name: Check the value of output.stdout_lines
+    ansible.builtin.debug:
+      msg: "{{ output.stdout_lines }}"
+
+  - name: Check the value of output.rc
+    ansible.builtin.debug:
+      msg: "{{ output.rc }}"
