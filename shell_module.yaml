@@ -16,3 +16,7 @@
   - name: Check the value of output
     ansible.builtin.debug:
       msg: "{{ output }}"
+
+  - name: Check the value of output.stdout_lines
+    ansible.builtin.debug:
+      msg: "{{ output.stdout_lines }}"
