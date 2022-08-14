@@ -12,8 +12,8 @@
   - name: Add several users
     ansible.builtin.user:
       name: "{{ item.name }}"
-      state: present
+      state: "{{ item.state }}"
       groups: "{{ item.group }}"
     loop:
-      - { name: 'webuser10', group: 'wheel'}
-      - { name: 'webuser11', group: 'wheel'}
+      - { name: 'webuser10', group: 'wheel', state: 'present'}
+      - { name: 'webuser11', group: 'wheel', state: 'absent'}
