@@ -1,18 +1,5 @@
 ---
-- hosts: webserver
   
   tasks:
-  - name: Debug will run on webserver
-    ansible.builtin.debug:
-      msg: "{{ item }}"
-    with_items: "{{ sample_data }}"
-    vars:
-      ansible_connection: ssh
-      ansible_user: linuxadmin
-      ansible_password: "{{ans_pwd}}"
-      sample_data:
-        - user1
-        - user2
-
   - name: Shell module will run on localhost
     local_action: ansible.builtin.command echo "My Test file for delegation - 1" >> /var/tmp/delegation.out
