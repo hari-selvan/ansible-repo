@@ -1,5 +1,5 @@
 ---
   
-tasks:
-  - name: Shell module will run on localhost
-    local_action: ansible.builtin.command echo "My Test file for delegation - 1" >> /var/tmp/delegation.out
+  tasks:
+    - name: Shell module will run on localhost
+      local_action: ansible.builtin.command echo "My Test file for delegation - 1" >> /var/tmp/delegation.out
