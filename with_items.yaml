@@ -13,5 +13,6 @@
 
   tasks:
   - name: Example for with items
-    ansible.builtin.shell: echo "{{item}}"
+    ansible.builtin.debug: 
+      msg: "The item name is {{item}}"
     with_items: "{{sample_data}}"
