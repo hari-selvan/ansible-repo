@@ -26,7 +26,3 @@
 
   - name: Shell module will run on localhost
     local_action: ansible.builtin.shell echo "My Test file for delegation" >> /var/tmp/delegation.out
-    vars:
-      ansible_connection: ssh
-      ansible_user: linuxadmin
-      ansible_password: "{{ans_pwd}}"
