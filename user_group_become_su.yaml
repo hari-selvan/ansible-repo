@@ -11,18 +11,17 @@
     ansible_user: linuxadmin
     ansible_password: "root123"
 
-
   tasks:
   - name: Create a group
     ansible.builtin.group:
-      name: webgroup7
-      gid: 21077
+      name: webgroup10
+      gid: 21097
 
   - name: Create a user account
     ansible.builtin.user:
       name: webuser7
-      uid: 21077
-      group: webgroup7
+      uid: 21097
+      group: webgroup10
       comment: "Ansible test user"
       shell: /bin/bash
 
