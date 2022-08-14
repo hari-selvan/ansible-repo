@@ -16,6 +16,13 @@
     ansible.builtin.debug:
       msg: "{{ item }}"
     with_items: "{{ sample_data }}"
+    vars:
+      ansible_connection: ssh
+      ansible_user: linuxadmin
+      ansible_password: "{{ans_pwd}}"
+      sample_data:
+        - user1
+        - user2
 
   - name: Shell module will run on localhost
     ansible.builtin.shell: echo "My Test file for delegation" > /var/tmp/delegation.out
