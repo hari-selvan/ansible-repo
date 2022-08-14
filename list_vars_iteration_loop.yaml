@@ -8,11 +8,11 @@
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
     username:
-      - webuser2
-      - webadmin2
+      - webuser4
+      - webadmin4
     packages:
-      - postfix
-      - httpd
+      - sendmail
+      - git
   
   tasks:
 

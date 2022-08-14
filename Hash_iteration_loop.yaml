@@ -15,5 +15,5 @@
       state: present
       groups: "{{ item.group }}"
     loop:
-      - { name: 'webuser3', group: 'wheel'}
-      - { name: 'webuser4', group: 'wheel'}
+      - { name: 'webuser10', group: 'wheel'}
+      - { name: 'webuser11', group: 'wheel'}
