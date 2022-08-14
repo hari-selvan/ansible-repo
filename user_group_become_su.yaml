@@ -9,7 +9,7 @@
     ansible_become_password: "{{ ans_become_pwd }}"
     ansible_connection: ssh
     ansible_user: linuxadmin
-    ansible_password: "{[ ans_pwd }}"
+    ansible_password: "{{ ans_pwd }}"
 
   tasks:
   - name: Create a group
