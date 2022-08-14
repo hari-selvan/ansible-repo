@@ -10,6 +10,10 @@
 
 
   tasks:
+  - name: Display ansible_facts
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['os_family'] }}"
+      
   - name: Shut down Debian flavored systems
     ansible.builtin.command: /sbin/shutdown -t now
     when: ansible_facts['os_family'] == "Debian"
