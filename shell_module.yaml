@@ -11,3 +11,8 @@
   tasks:
   - name: Run linux commands
     ansible.builtin.shell: cat /etc/hosts
+    register: output
+
+  - name: Check the value of output
+    ansible.builtin.debug:
+      msg: "{{ output }}"
