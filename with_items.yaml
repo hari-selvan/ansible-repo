@@ -1,0 +1,17 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+    sample_data:
+      - user1
+      - user2
+
+  tasks:
+  - name: Example for with items
+    ansible.builtin.shell: echo "{{item}}"
+    with_items: "{{sample_data}}"
