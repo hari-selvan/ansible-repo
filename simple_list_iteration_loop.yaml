@@ -9,11 +9,12 @@
     ansible_password: "{{ans_pwd}}"
   
   tasks:
-  - name: Add several users
+  - name: Add multiple users
     ansible.builtin.user:
       name: "{{ item }}"
       state: present
       groups: "wheel"
     loop:
-      - webuser1
-      - webadmin1
+      - webuser2
+      - webadmin2
+      - webadmin3
