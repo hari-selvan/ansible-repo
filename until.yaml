@@ -16,3 +16,7 @@
     until: output.rc == 0
     retries: 5
     delay: 10
+
+  - name: debug the return code
+    ansible.builtin.debug:
+      msg: "{{ output.rc }}"
