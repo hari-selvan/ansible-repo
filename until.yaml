@@ -21,3 +21,7 @@
   - name: debug the return code
     ansible.builtin.debug:
       msg: "{{ output.rc }}"
+
+  - name: debug the entire output variable
+    ansible.builtin.debug:
+      msg: "{{ output }}"
