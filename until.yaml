@@ -14,8 +14,9 @@
       ping -c 3 192.168.56.101
     register: output
     until: output.rc == 0
-    retries: 30
+    retries: 3
     delay: 3
+    ignore_errors: yes
 
   - name: debug the return code
     ansible.builtin.debug:
