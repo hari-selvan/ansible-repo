@@ -15,11 +15,11 @@
 
   - name: Print os family from facts
     ansible.builtin.debug:
-      msg: ansible_facts['os_family']
+      msg: "{{ ansible_facts['os_family'] }}"
 
   - name: Print all available facts
     ansible.builtin.debug:
-      msg: ansible_facts['distribution_major_version']
+      msg: "{{ ansible_facts['distribution_major_version'] }}"
 
   - name: Create a group for CentOS Operating System
     ansible.builtin.group:
