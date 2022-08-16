@@ -1,0 +1,25 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Create a group for CentOS Operating System
+    ansible.builtin.group:
+      name: conditinalgroup1
+      gid: 23001
+    when: ansible_facts['os_family'] == "CentOS"
+
+  - name: Create a user account
+    ansible.builtin.user:
+      name: appuser4
+      uid: 20014
+      group: appgroup4
+      comment: "Ansible test user"
+      shell: /bin/bash
+    when: ansible_facts['os_family'] == "CentOS" and ansible_facts['distribution_major_version'] == "8"
