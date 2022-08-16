@@ -25,11 +25,28 @@
     ansible.builtin.group:
       name: conditionalgroup1
       gid: 23101
+      state: absent
     when: ansible_facts['os_family'] == "RedHat"
+
+  - name: Create a group when os family is not Debian
+    ansible.builtin.group:
+      name: conditionalgroup2
+      gid: 23102
+    when: ansible_facts['os_family'] != "Debian"
 
   - name: Create a user account when os family is Redhat and OS major version is 8
     ansible.builtin.user:
       name: conditionaluser1
+      uid: 23101
+      group: conditionalgroup1
+      comment: "Ansible test user"
+      shell: /bin/bash
+      state: absent
+    when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8"
+
+  - name: Create a user account when os family is Redhat or os family is debian
+    ansible.builtin.user:
+      name: conditionaluser2
       uid: 23101
       group: conditionalgroup1
       comment: "Ansible test user"
