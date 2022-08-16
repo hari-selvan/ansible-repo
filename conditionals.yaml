@@ -23,7 +23,7 @@
 
   - name: Create a group when os family is Redhat
     ansible.builtin.group:
-      name: conditinalgroup1
+      name: conditionalgroup1
       gid: 23001
     when: ansible_facts['os_family'] == "RedHat"
 
