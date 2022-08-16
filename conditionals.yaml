@@ -7,6 +7,7 @@
     ansible_connection: ssh
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
+    env: "{{env_type}}"
 
   tasks:
   - name: Print all available facts
@@ -32,7 +33,7 @@
     ansible.builtin.group:
       name: conditionalgroup2
       gid: 23102
-    when: ansible_facts['os_family'] != "Debian"
+    when: ansible_facts['os_family'] != "Debian" and env == "dev"
 
   - name: Create a user account when os family is Redhat and OS major version is 8
     ansible.builtin.user:
