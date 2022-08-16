@@ -24,13 +24,13 @@
   - name: Create a group when os family is Redhat
     ansible.builtin.group:
       name: conditionalgroup1
-      gid: 23001
+      gid: 23101
     when: ansible_facts['os_family'] == "RedHat"
 
   - name: Create a user account when os family is Redhat and OS major version is 8
     ansible.builtin.user:
       name: conditionaluser1
-      uid: 23001
+      uid: 23101
       group: conditionalgroup1
       comment: "Ansible test user"
       shell: /bin/bash
