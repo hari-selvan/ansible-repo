@@ -75,3 +75,12 @@
       comment: "Ansible test user"
       shell: /bin/bash
     when: ansible_facts['os_family'] == "RedHat" and env == "dev"
+
+  - name: Create a user account when os family is Redhat and environment is PRD
+    ansible.builtin.user:
+      name: conditionaluser5
+      uid: 23105
+      group: conditionalgroup1
+      comment: "Ansible test user"
+      shell: /bin/bash
+    when: ansible_facts['os_family'] == "RedHat" and env == "prd"
