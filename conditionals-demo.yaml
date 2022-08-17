@@ -7,7 +7,6 @@
     ansible_connection: ssh
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
-    env: "{{env_type}}"
 
   tasks:
   - name: Print all available facts
