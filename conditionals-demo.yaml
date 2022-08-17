@@ -1,0 +1,23 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+    env: "{{env_type}}"
+
+  tasks:
+  - name: Print all available facts
+    ansible.builtin.debug:
+      var: ansible_facts
+
+  - name: Print os family from facts
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['os_family'] }}"
+
+  - name: Print all available facts
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['distribution_major_version'] }}"
