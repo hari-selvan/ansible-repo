@@ -32,3 +32,9 @@
       name: conditionalgroup2
       gid: 23102
     when: ansible_facts['os_family'] != "Debian"
+
+  - name: Donot create a group when os family is Debian
+    ansible.builtin.group:
+      name: redhatgroup1
+      gid: 23103
+    when: ansible_facts['os_family'] != "Debian"
