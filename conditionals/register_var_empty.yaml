@@ -16,5 +16,5 @@
 
   - name: Check contents for emptiness
     ansible.builtin.debug:
-    msg: "Directory is empty"
+      msg: "Directory is empty"
     when: list_dir.stdout == ""
