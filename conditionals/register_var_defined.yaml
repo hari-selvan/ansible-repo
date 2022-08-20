@@ -1,0 +1,22 @@
+---
+### Executes task if registered variable is empty
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+    variable1: Ansible
+    variable2: 
+
+
+  tasks:
+    - name: Run the command if "variable1" is defined
+      ansible.builtin.shell: echo "Variable variable1 is defined. Value is '{{ variable1 }}'"
+      when: variable1 is defined
+
+    - name: Fail the playbook if "variable2" is undefined
+      ansible.builtin.fail: msg="Failing playbook as the variable2 is not defined."
+      when: variable2 is undefined
