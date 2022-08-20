@@ -21,4 +21,4 @@
     - name: Fail the playbook if "variable2" is undefined
       ansible.builtin.debug: 
         msg: "Failing playbook as the variable2 is not defined."
-      when: variable2 is undefined
+      when: variable2 is defined
