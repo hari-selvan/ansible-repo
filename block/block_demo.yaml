@@ -1,0 +1,86 @@
+---
+- hosts: webapp-dev
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Block to install httpd (Apache webserver) and create simple webpage
+    block:
+      - name: Install HTTPD package
+        ansible.builtin.yum:
+          name: httpd
+          state: present
+
+      - name: Create a blank HTML file
+        ansible.builtin.file:
+          path: /var/www/html/dev-webpage.html
+          state: touch
+
+      - name: Add HTML code to webpage
+        ansible.builtin.blockinfile:
+          path: /var/www/html/dev-webpage.html
+          block: |
+           <!DOCTYPE html>
+            <html>
+            <body>
+
+            <h1>Apache web server for DEV server</h1>
+
+            <p>This is a test server</p>
+
+            </body>
+            </html>
+
+      - name: Restart the HTTPD
+        ansible.builtin.service:
+          name: httpd
+          state: restarted
+    when: env=="dev"
+
+- hosts: webapp-prd
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Block to install httpd (Apache webserver) and create simple webpage
+    block:
+      - name: Install HTTPD package
+        ansible.builtin.yum:
+          name: httpd
+          state: present
+
+      - name: Create a blank HTML file
+        ansible.builtin.file:
+          path: /var/www/html/dev-webpage.html
+          state: touch
+
+      - name: Add HTML code to webpage
+        ansible.builtin.blockinfile:
+          path: /var/www/html/dev-webpage.html
+          block: |
+           <!DOCTYPE html>
+            <html>
+            <body>
+
+            <h1>Apache web server for PRD server</h1>
+
+            <p>This is a test server</p>
+
+            </body>
+            </html>
+
+      - name: Restart the HTTPD
+        ansible.builtin.service:
+          name: httpd
+          state: restarted
+    when: env=="prd"
