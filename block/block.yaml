@@ -1,0 +1,43 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Install apache and and change configuration for DEV server
+    block:
+      - name: Install apache
+        ansible.builtin.yum:
+          name: httpd
+      
+      - name: Create a new html file
+        ansible.builtin.file:
+          path: /var/www/html/default.html
+          state: touch
+          
+      - name: Update contents of HTML file
+        ansible.builtin.blockinfile:
+          path: /var/www/html/default.html
+          block: |
+            <!DOCTYPE html>
+            <html>
+            <body>
+
+            <h1>Apache web server for DEV server</h1>
+
+            <p>This is a test server</p>
+
+            </body>
+            </html>
+
+      - name: Restart httpd webserver service
+        ansible.builtin.service:
+          name: httpd
+          state: restarted
+
+    when: env == "dev"
