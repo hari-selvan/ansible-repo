@@ -1,0 +1,22 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Check if user exists in sudoers configuration
+    ansible.builtin.shell: cat /etc/sudoers | grep -i appadmin
+    register: sudo_output
+
+  - name: Debug the output saved in sudo_output variable
+    ansible.builtin.debug:
+      msg: "{{sudo_output}}"
+
+#  - name: Add user appadmin to the sudoers if it doesn't exist
+#    ansible.builtin.lineinfile:
+#      path:
