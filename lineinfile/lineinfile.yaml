@@ -18,4 +18,9 @@
     - name: Restart httpd
       ansible.builtin.service:
         name: httpd
-        state: restarted   
+        state: restarted
+
+    - name: Add a new entry for sudoers file
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        line: "unixadmin  ALL=(ALL)  NOPASSWD: ALL"
