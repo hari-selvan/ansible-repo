@@ -10,8 +10,9 @@
 
   tasks:
   - name: Check if user exists in sudoers configuration
-    ansible.builtin.shell: cat /etc/sudoers | grep -i appadmin
+    ansible.builtin.shell: cat /etc/sudoers | grep -i webadmin
     register: sudo_output
+    ignore_errors: true
 
   - name: Debug the output saved in sudo_output variable
     ansible.builtin.debug:
