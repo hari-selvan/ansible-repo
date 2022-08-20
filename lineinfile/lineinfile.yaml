@@ -25,8 +25,15 @@
         path: /etc/sudoers
         line: "unixadmin  ALL=(ALL)  NOPASSWD: ALL"
 
-    - name: Remove a entry for sudoers file
+    - name: Remove a entry from sudoers file
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         line: "dsadmin	ALL=(ALL)	NOPASSWD: ALL"
         state: absent
+
+    - name: Remove a entry from sudoers file
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        regex: '^unixadmin'
+        state: absent
+    
