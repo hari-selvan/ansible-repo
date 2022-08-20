@@ -1,0 +1,29 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Block to create user name and group
+    block:
+      - name: Create a group
+        ansible.builtin.group:
+          name: blockgroup1
+          gid: 23201
+
+      - name: Create a user
+        ansible.builtin.user:
+          name: blockuser1
+          uid: 23201
+          group: blockgroup1
+          comment: "Ansible test user"
+          shell: /bin/bash
+  
+  - name: Debug the ansible variables
+    ansible.builtin.debug:
+      var: "{{ansible_facts}}"

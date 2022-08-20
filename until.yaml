@@ -14,8 +14,8 @@
       ping -c 3 192.168.56.101
     register: output
     until: output.rc == 0
-    retries: 3
-    delay: 3
+    retries: 10
+    delay: 18
     ignore_errors: yes
 
   - name: debug the return code
