@@ -9,7 +9,7 @@
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
     variable1: Ansible
-    variable2: " "
+    variable2: 
 
 
   tasks:
