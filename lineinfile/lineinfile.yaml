@@ -13,4 +13,9 @@
       ansible.builtin.lineinfile:
         path: /etc/httpd/conf/httpd.conf
         regex: '^Listen'
-        line: Listen 8080    
+        line: Listen 8080
+
+    - name: Restart httpd
+      ansible.builtin.service:
+        name: httpd
+        state: restart   
