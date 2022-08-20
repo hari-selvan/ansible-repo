@@ -12,5 +12,5 @@
     - name: Modify port number to 8080
       ansible.builtin.lineinfile:
         path: /etc/httpd/conf/httpd.conf
-        regex: '^LISTEN'
-        line: LISTEN 8080    
+        regex: '^Listen'
+        line: Listen 8080    
