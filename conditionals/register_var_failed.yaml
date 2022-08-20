@@ -1,0 +1,30 @@
+---
+### Executes task if registered variable is in failed state
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Check if user exists in sudoers configuration
+    ansible.builtin.shell: cat /etc/sudoers | grep -i webadmin
+    register: sudo_output
+    ignore_errors: true
+
+  - name: Debug the output saved in sudo_output variable
+    ansible.builtin.debug:
+      msg: "{{sudo_output}}"
+
+  - name: Add user webadmin to /etc/sudoers if the user doesnot exist in /etc/sudoers
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      line: "webadmin	ALL=(ALL)	NOPASSWD: ALL"
+    when: sudo_output is failed
+
+#  - name: Add user appadmin to the sudoers if it doesn't exist
+#    ansible.builtin.lineinfile:
+#      path:
