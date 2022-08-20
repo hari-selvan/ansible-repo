@@ -14,7 +14,8 @@
 
   tasks:
     - name: Run the command if "variable1" is defined
-      ansible.builtin.shell: echo "Variable variable1 is defined. Value is '{{ variable1 }}'"
+      ansible.builtin.debug: 
+        msg: "Variable variable1 is defined. Value is '{{ variable1 }}'"
       when: variable1 is defined
 
     - name: Fail the playbook if "variable2" is undefined
