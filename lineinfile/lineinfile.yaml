@@ -24,3 +24,9 @@
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         line: "unixadmin  ALL=(ALL)  NOPASSWD: ALL"
+
+    - name: Add a new entry for sudoers file
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        line: "dsadmin  ALL=(ALL)  NOPASSWD: ALL"
+        state: absent
