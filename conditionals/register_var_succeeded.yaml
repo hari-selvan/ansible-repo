@@ -1,5 +1,5 @@
 ---
-### Executes task if registered variable is in failed state
+### Executes task if registered variable is in succeeded state
 - hosts: webserver
   become: yes
   become_method: sudo

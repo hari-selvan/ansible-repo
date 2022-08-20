@@ -1,0 +1,20 @@
+---
+### Executes task if registered variable is empty
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: List contents of directory
+    ansible.builtin.command: ls /var/tmp/testdir
+    register: list_dir
+
+  - name: Check contents for emptiness
+    ansible.builtin.debug:
+    msg: "Directory is empty"
+    when: list_dir.stdout == ""
