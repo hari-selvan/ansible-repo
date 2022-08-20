@@ -61,12 +61,12 @@
 
       - name: Create a blank HTML file
         ansible.builtin.file:
-          path: /var/www/html/dev-webpage.html
+          path: /var/www/html/prd-webpage.html
           state: touch
 
       - name: Add HTML code to webpage
         ansible.builtin.blockinfile:
-          path: /var/www/html/dev-webpage.html
+          path: /var/www/html/prd-webpage.html
           block: |
            <!DOCTYPE html>
             <html>
