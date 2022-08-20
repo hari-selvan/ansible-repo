@@ -9,7 +9,7 @@
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
     variable1: Ansible
-    variable2: 
+    variable2: Ansible2
 
 
   tasks:
@@ -21,4 +21,4 @@
     - name: Fail the playbook if "variable2" is undefined
       ansible.builtin.debug: 
         msg: "Failing playbook as the variable2 is not defined."
-      when: variable2 is defined
+      when: variable2 is not defined
