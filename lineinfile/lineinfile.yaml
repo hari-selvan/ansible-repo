@@ -18,4 +18,4 @@
     - name: Restart httpd
       ansible.builtin.service:
         name: httpd
-        state: restart   
+        state: restarted   
