@@ -1,0 +1,19 @@
+---
+### Executes task if registered variable is empty
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Set a new fact 
+    ansible.builtin.set_fact:
+      custom_fact1: file_azure
+
+  - name: debug the fact
+    ansible.builtin.debug:
+      msg: custom_fact1
