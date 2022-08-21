@@ -1,0 +1,14 @@
+---
+## Become method sudo in playbook
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}" 
+
+  roles:
+    - role: Roles/first_role
+
