@@ -1,4 +1,5 @@
 ---
 
 package_name: httpd
+
 user_name: apache

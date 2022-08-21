@@ -7,3 +7,7 @@
 - name: debug the package_name variable
   ansible.builtin.debug:
     msg: "{{ package_name }}"
+
+- name: debug the user_name variable
+  ansible.builtin.debug:
+    msg: "{{ user_name }}"
