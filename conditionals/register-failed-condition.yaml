@@ -17,10 +17,17 @@
     ansible.builtin.debug:
       msg: "{{passwd_output}}"
 
-  - name: Check if user exists in sudoers failed
+  - name: Check if user exists in sudoers file
     ansible.builtin.shell: cat /etc/sudoers | grep -i webuser1
     register: sudo_output
+    ignore_errors: yes
 
   - name: Debug the output of sudo_output
     ansible.builtin.debug:
       msg: "{{sudo_output}}"
+
+  - name: Add the user to sudoers file if it is not having sudo permission
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      line: "webuser1  ALL=(ALL)  NOPASSWD:ALL"
+    when: sudo_output is failed
