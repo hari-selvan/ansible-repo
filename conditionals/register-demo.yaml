@@ -1,0 +1,18 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: List the directories 
+    ansible.builtin.shell: ls /var/tmp
+    register: list_output
+
+  - name: Check the results stored in list_output
+    ansible.builtin.debug:
+      msg: "{{list_output}}"
