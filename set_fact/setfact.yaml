@@ -12,8 +12,16 @@
   tasks:
   - name: Set a new fact 
     ansible.builtin.set_fact:
-      custom_fact1: file_azure
+      custom_fact: file_azure
+    when: cloud_type == "Azure"
 
-  - name: debug the fact
-    ansible.builtin.debug:
-      msg: custom_fact1
+  - name: AWS fact
+    ansible.builtin.set_fact:
+      custom_fact: file_aws
+    when: cloud_type == "AWS"
+
+  - name: Create the file
+    ansible.builtin.file:
+      path: /var/tmp/testdir/"{{custom_fact}}"
+      state: touch
+      
