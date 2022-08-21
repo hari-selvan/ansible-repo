@@ -22,6 +22,5 @@
 
   - name: Create the file
     ansible.builtin.file:
-      path: /var/tmp/testdir/"{{custom_fact}}"
+      path: /var/tmp/testdir/{{ custom_fact }}
       state: touch
-      
