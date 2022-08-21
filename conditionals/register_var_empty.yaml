@@ -25,6 +25,6 @@
 
   - name: Create a file if directory is empty
     ansible.builtin.file:
-      name: newfile
+      path: /var/tmp/testdir/newfile
       state: touch
     when: list_dir.stdout == ""
