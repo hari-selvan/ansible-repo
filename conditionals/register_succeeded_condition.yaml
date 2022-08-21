@@ -1,0 +1,30 @@
+---
+### Executes task if registered variable is in succeeded state
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Check if user exists in server
+    ansible.builtin.shell: cat /etc/passwd | grep -i webuser2
+    register: passwd_output
+    ignore_errors: yes
+
+  - name: Debug the output saved in passwd_output variable
+    ansible.builtin.debug:
+      msg: "{{passwd_output}}"
+
+  - name: Remove appadmin user from the server if it exists
+    ansible.builtin.user:
+      name: webuser2
+      state: absent
+    when: passwd_output is succeeded
+
+#  - name: Add user appadmin to the sudoers if it doesn't exist
+#    ansible.builtin.lineinfile:
+#      path:
