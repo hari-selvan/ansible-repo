@@ -11,3 +11,8 @@
 - name: debug the user_name variable
   ansible.builtin.debug:
     msg: "{{ user_name }}"
+
+- name: Copy file webpage.html to /var/www/html in managed node
+  ansible.builtin.copy:
+    src: webpage.html
+    dest: /var/www/html
