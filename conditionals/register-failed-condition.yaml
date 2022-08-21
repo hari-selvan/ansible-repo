@@ -1,0 +1,18 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Check if user exists in server
+    ansible.builtin.shell: cat /etc/passwd | grep -i webuser1
+    register: passwd_output
+
+  - name: Debug the output of passwd_output
+    ansible.builtin.debug:
+      msg: "{{passwd_output}}"
