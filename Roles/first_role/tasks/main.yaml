@@ -1,3 +1,13 @@
+---
+
 - name: debug the os family
   ansible.builtin.debug:
     msg: "{{ ansible_facts }}"
+
+- name: debug the package_name variable
+  ansible.builtin.debug:
+    msg: "{{ package_name }}"
+
+- name: debug the user_name variable
+  ansible_builtin.debug:
+    msg: "{{ user_name }}"
