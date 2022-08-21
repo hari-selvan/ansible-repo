@@ -16,3 +16,11 @@
   - name: Debug the output of passwd_output
     ansible.builtin.debug:
       msg: "{{passwd_output}}"
+
+  - name: Check if user exists in sudoers failed
+    ansible.builtin.shell: cat /etc/sudoers | grep -i webuser1
+    register: sudo_output
+
+  - name: Debug the output of sudo_output
+    ansible.builtin.debug:
+      msg: "{{sudo_output}}"
