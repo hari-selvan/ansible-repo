@@ -1,0 +1,18 @@
+---
+
+- name: debug the os family
+  ansible.builtin.debug:
+    msg: "{{ ansible_facts }}"
+
+- name: debug the package_name variable
+  ansible.builtin.debug:
+    msg: "{{ package_name }}"
+
+- name: debug the user_name variable
+  ansible.builtin.debug:
+    msg: "{{ user_name }}"
+
+- name: Copy file webpage.html to /var/www/html in managed node
+  ansible.builtin.copy:
+    src: webpage.html
+    dest: /var/www/html

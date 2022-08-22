@@ -10,6 +10,6 @@
     ansible_password: "{{ans_pwd}}" 
 
   roles:
-    - role: Roles/first_role
+    - role: roles/first_role
     - second_role
 
