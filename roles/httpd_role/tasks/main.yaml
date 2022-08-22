@@ -1,0 +1,5 @@
+---
+
+- name: debug the os family
+  ansible.builtin.debug:
+    msg: "{{ ansible_facts }}"
