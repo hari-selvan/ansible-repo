@@ -14,5 +14,5 @@
 
 - name: Copy file webpage.html to /var/www/html in managed node
   ansible.builtin.copy:
-    src: webpage.html
+    src: postfix.html
     dest: /var/www/html
