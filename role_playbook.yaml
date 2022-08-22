@@ -11,4 +11,5 @@
 
   roles:
     - role: Roles/first_role
+    - second_role
 
