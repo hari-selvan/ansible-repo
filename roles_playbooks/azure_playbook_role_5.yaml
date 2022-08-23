@@ -13,6 +13,6 @@
     ansible.builtin.debug:
       msg: "{{ ansible_facts['os_family'] }}"
 
-  - name: Example for Include role (Dynamic resue - Runs in a sequence as per the order of the tasks in the play)
-    include_role: 
+  - name: Example for Import role (Static resue - Similar to using roles with -roles)
+    import_role: 
       name: httpd_role
