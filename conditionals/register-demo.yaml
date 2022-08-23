@@ -20,3 +20,9 @@
   - name: Check the stdout_lines results stored in list_output
     ansible.builtin.debug:
       msg: "{{list_output.stdout_lines}}"
+
+### Failed condition
+
+  - name: Check if user exists in server
+    ansible.builtin.shell: cat /etc/passwd | grep -i webuser1
+    register: passwd_output
