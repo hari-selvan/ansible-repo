@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Debug ansible fact for os_family
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['os_family'] }}"
+
+  - name: Example for Include role
+    include_role: httpd_role
