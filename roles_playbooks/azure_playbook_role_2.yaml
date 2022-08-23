@@ -8,5 +8,10 @@
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
 
+  tasks:
+  - name: Debug ansible fact for os_family
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['os_family'] }}"
+      
   roles:
     - httpd_role
