@@ -14,4 +14,5 @@
       msg: "{{ ansible_facts['os_family'] }}"
 
   - name: Example for Include role
-    include_role: httpd_role
+    include_role: 
+      name: httpd_role
