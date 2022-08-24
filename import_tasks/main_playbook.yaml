@@ -7,8 +7,10 @@
     ansible_connection: ssh
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
-     
-  roles:
-    - httpd_role
-    - first_role
-    - second_role
+
+  import_tasks: sometasks.yaml
+
+  tasks:
+  - name: Debug the variable Environment
+    ansible.builtin.debug:
+      msg: "{{ Environment }}"

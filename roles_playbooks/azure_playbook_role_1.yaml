@@ -10,3 +10,4 @@
 
   roles:
     - role: roles/httpd_role
+    - role: roles/postfix_role
