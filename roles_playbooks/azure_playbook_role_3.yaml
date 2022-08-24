@@ -14,6 +14,6 @@
   - name: Debug ansible fact for os_family
     ansible.builtin.debug:
       msg: "{{ ansible_facts['os_family'] }}"
-      
+  
   roles:
     - httpd_role
