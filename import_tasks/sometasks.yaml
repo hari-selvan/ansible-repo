@@ -1,6 +1,5 @@
 ---
 
-tasks:
 - name: Setfact 
-  ansible.builtin.setfact:
+  ansible.builtin.set_fact:
     Environment: "PRD"
