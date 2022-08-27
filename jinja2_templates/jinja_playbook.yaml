@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: Add a host based on condition
+    ansible.builtin.add_host:
+      name: 192.168.56.101
+      groups: server
+    when: type == "web"
+
+  - name: Add a host based on condition
+    ansible.builtin.add_host:
+      name: 192.168.56.102
+      groups: server
+    when: type == "mail"
+
+- hosts: server
+  become: yes
+  become_method: sudo
+   
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tasks:
+  - name: Debug the server
+    ansible.builtin.debug:
+      msg: "We are connected to {{type}} server"
+
+  - name: Demo Jinja2 template
+    ansible.builtin.template:
+      src: sample.j2
+      dest: /var/www/html/jinjawebpage.html
