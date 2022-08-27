@@ -1,0 +1,18 @@
+---
+
+- hosts: win
+#  become: yes
+#  become_method: sudo
+   
+  vars:
+    ansible_connection: winrm
+    ansible_user: winadmin
+    ansible_password: "{{ans_pwd}}"
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_transport: basic
+    ansible_winrm_port: 5985
+
+  tasks:
+  - name: Debug the server
+    ansible.builtin.debug:
+      msg: "We are connected to {{type}} server"
