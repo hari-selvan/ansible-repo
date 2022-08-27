@@ -32,3 +32,8 @@
     ansible.builtin.template:
       src: sample.j2
       dest: /var/www/html/jinjawebpage.html
+
+  - name: Demo Jinja2 template
+    ansible.builtin.template:
+      src: webpage.j2
+      dest: /var/www/html/jinjawebpage-1.html
