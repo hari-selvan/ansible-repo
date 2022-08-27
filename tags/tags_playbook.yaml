@@ -2,11 +2,14 @@
 - hosts: all
   become: yes
   become_method: sudo
-
+   
   vars:
     ansible_connection: ssh
     ansible_user: linuxadmin
     ansible_password: "{{ans_pwd}}"
+
+  tags:
+    - Software
 
   tasks:
   - name: Install webserver
@@ -20,3 +23,20 @@
       name: postfix
     tags:
       - mailserver
+
+- hosts: all
+  become: yes
+  become_method: sudo
+   
+  vars:
+    ansible_connection: ssh
+    ansible_user: linuxadmin
+    ansible_password: "{{ans_pwd}}"
+
+  tags:
+    - users
+
+  tasks:
+    - name: Add a user
+      ansible.builtin.user:
+        name: "testuser110"
